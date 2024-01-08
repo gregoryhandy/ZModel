@@ -1,3 +1,7 @@
+%%
+% Get coordinates in the correct location/house (locNum) for a number of
+% individuals, as indicated by numPeople input
+%%
 function [xLoc,yLoc] = getCoordinates(locNum, numHouses,numPeople)
 
 if locNum <= numHouses

@@ -1,14 +1,15 @@
-function [IVec,SVec,tVec] = SIF_MeanField_Fn(NTot,pInf,beta,nu)
+%%
+% Runs the deterministic SIR model using Euler's method 
+%%
+function [IVec,SVec,tVec] = SIR_MeanField(pInf,beta,nu,tMax)
 
 % Set up the time vector
 dt = 0.01;
-tVec = [0:dt:2000];
+tVec = [0:dt:tMax];
 
 % Preallocate memory
 SVec = zeros(length(tVec),1);
 IVec = zeros(length(tVec),1);
-RVec = zeros(length(tVec),1);
-
 
 % Initial conditions 
 IVec(1) = pInf;

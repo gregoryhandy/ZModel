@@ -1,3 +1,6 @@
+%%
+% Simulates the actions during the turn for each agent in the neighborhood
+%%
 function [popTable,correctRemoval,incorrectRemoval] =...
     duringTurnActions(popTable,correctRemoval,incorrectRemoval,dayNum,numHouses)
 
@@ -39,7 +42,7 @@ for h = 1:numHouses+1
             % Remove no longer viable house members
             houseSus = houseSus(popTable.healthStatus(houseSus)~=-10 & ...
                 popTable.newHouseNum(houseSus)-popTable.houseNum(houseSus)== 0);
-            % Remove recently eliminated Zombies
+            % Remove recently eliminated zombies
             houseZombies = houseZombies(popTable.healthStatus(houseZombies)~=-10 & ...
                 popTable.newHouseNum(houseZombies)-popTable.houseNum(houseZombies)== 0);
 

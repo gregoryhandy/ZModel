@@ -1,3 +1,6 @@
+%%
+% Performs end-of-turn bookkeeping
+%%
 function [popTable] = endOfTurn(popTable,numHouses)
 
     % remove individuals
@@ -12,14 +15,4 @@ function [popTable] = endOfTurn(popTable,numHouses)
         [popTable.houseCoords(moved(ii),1),popTable.houseCoords(moved(ii),2)]...
             = getCoordinates(popTable.houseNum(moved(ii)),numHouses,1);
     end
-
-    % Update infection status
-    popTable.infDays(popTable.healthStatus == 0) = ...
-        popTable.infDays(popTable.healthStatus == 0) + 1;
-    popTable.healthStatus(popTable.infDays == 3) = -1;
-    popTable.hitPoints(popTable.infDays == 3) = 2;
-    popTable.infDays(popTable.infDays == 3) = inf;
-
-    
-
 end

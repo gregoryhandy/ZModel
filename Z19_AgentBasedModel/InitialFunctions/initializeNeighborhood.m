@@ -1,5 +1,7 @@
 %%
-% Initial the house
+% Initial the neightborhood for the simulation
+%   Assign house numbers for everyone
+%   Choose one person to start out infected
 %%
 function [popTable] = initializeNeighborhood(popTable,numHouses)
 
@@ -8,7 +10,6 @@ numIndividuals = max(popTable.ID);
 %% Assign initial house number randomly
 
 individualsPerHouse = ceil(numIndividuals/numHouses);
-orderVec = randperm(numIndividuals);
 houseTemp = repmat([1:numHouses],1,individualsPerHouse);
 houseTemp = houseTemp(1:numIndividuals);
 houseAssignment = houseTemp(randperm(numIndividuals));
@@ -23,7 +24,6 @@ for h = 1:numHouses
     houseMembers = find(popTable.houseNum==h);
     selectedMem = houseMembers(randperm(length(houseMembers),1));
     popTable.healthStatus(selectedMem) = 0;
-    popTable.infDays(selectedMem) = 1;
 
     [popTable.houseCoords(houseMembers,1),popTable.houseCoords(houseMembers,2)]...
         = getCoordinates(h, numHouses,5);

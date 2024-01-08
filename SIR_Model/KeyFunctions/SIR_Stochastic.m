@@ -1,4 +1,8 @@
-function [INum,SNum,TVec] = SIR_Stochastic_Fn(NTot,pInf,beta,nu)
+%%
+% Runs the stochastic SIR model using the Gillespie algorithm (not
+% discussed during workshop, but it speeds up the simulations)
+%%
+function [INum,SNum,TVec] = SIR_Stochastic(NTot,pInf,beta,nu)
 
 INum = []; SNum = []; TVec = [];
 
