@@ -49,9 +49,11 @@ end
 
 %% Plot the first 100 simulation trials
 
+linewidth = 5;
+fontsize = 30;
 figure(1); clf;
-plot(TVec,IAll(:,1:100),'linewidth',1.5)
-set(gca,'fontsize',16)
+plot(TVec,IAll(:,1:100),'linewidth',linewidth)
+set(gca,'fontsize',fontsize)
 xlabel('Time')
 ylabel('Number Infected')
 
@@ -70,14 +72,14 @@ end
 
 subplot(1,2,1)
 histogram(maxVal,10)
-set(gca,'fontsize',16)
+set(gca,'fontsize',fontsize)
 xlabel('Max Number Infected')
 ylabel('Number of trials')
 
 subplot(1,2,2)
 histogram(TVec(endIndex),10)
 xlabel('Time of outbreak ending')
-set(gca,'fontsize',16)
+set(gca,'fontsize',fontsize)
 ylabel('Number of trials')
 
 fprintf('Percent of Trials with Outbreaks: %d%%\n',round(sum(max(IAll,[],1)>10)/numTrials*100))
@@ -89,15 +91,16 @@ figure(3); clf; hold on;
 SEM = std(IAll,[],2)/sqrt(numTrials);
 CI95 = SEM * tinv(0.975, numTrials-1);  
 patch([TVec fliplr(TVec)], [(mean(IAll,2)+CI95)' fliplr((mean(IAll,2)-CI95)')]/NTot, [0.75 0.75 0.75])
-stochAve = plot(TVec,mean(IAll,2)/NTot,'Color',colorScheme(2,:),'linewidth',2);
+stochAve = plot(TVec,mean(IAll,2)/NTot,'Color',colorScheme(2,:),'linewidth',linewidth);
 xlim([0 150])
-set(gca,'fontsize',16)
+set(gca,'fontsize',fontsize)
 xlabel('Time')
 ylabel('Fraction of Population Infected')
 
 %% Plot the mean field results
 [IVec,SVec,tVec] = SIR_MeanField(pInf,beta,nu,2000);
-detAve = plot(tVec, IVec,'--','linewidth',1.5,'color',colorScheme(2,:));
+figure(3);
+detAve = plot(tVec, IVec,'--','linewidth',linewidth,'color',colorScheme(2,:));
 xlim([0 130])
 legend([stochAve, detAve],{'Sim Ave','Mean Field Model'})
 
@@ -109,10 +112,10 @@ figure(4); clf; hold on;
 SEM = std(IAll(:,outbreakIndices),[],2)/sqrt(size(outbreakIndices,2));
 CI95 = SEM * tinv(0.975, size(outbreakIndices,2)-1);  
 patch([TVec fliplr(TVec)], [(mean(IAll(:,outbreakIndices),2)+CI95)' fliplr((mean(IAll(:,outbreakIndices),2)-CI95)')]/NTot, [0.75 0.75 0.75])
-stochAve=plot(TVec,mean(IAll(:,outbreakIndices),2)/NTot,'color',colorScheme(2,:),'linewidth',2);
-detAve=plot(tVec, IVec,'--','linewidth',1.5,'color',colorScheme(2,:));
+stochAve=plot(TVec,mean(IAll(:,outbreakIndices),2)/NTot,'color',colorScheme(2,:),'linewidth',linewidth);
+detAve=plot(tVec, IVec,'--','linewidth',linewidth,'color',colorScheme(2,:));
 xlim([0 150])
-set(gca,'fontsize',16)
+set(gca,'fontsize',fontsize)
 xlabel('Time')
 ylabel('Fraction of Population Infected')
 legend([stochAve, detAve],{'Sim Ave','Mean Field Model'})

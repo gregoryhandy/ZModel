@@ -85,21 +85,25 @@ for dayLoop = 1:maxDays
 end
 
 %% Plot the final neighborhood and statistics
+
+linewidth = 5;
+fontsize = 16;
+
 figure(); 
 subplot(1,2,1); hold on;
-plot(totalHealthy,'linewidth',1.5)
-plot(totalInf,'linewidth',1.5)
-plot(totalZombies,'linewidth',1.5)
+plot(totalHealthy,'linewidth',linewidth)
+plot(totalInf,'linewidth',linewidth)
+plot(totalZombies,'linewidth',linewidth)
 legend('Healthy','Infected','Zombie')
-set(gca,'fontsize',16)
+set(gca,'fontsize',fontsize)
 xlabel('Days')
 ylabel('Total Number')
 
 subplot(1,2,2); hold on;
-plot(totalCorrectRemoval,'linewidth',1.5)
-plot(totalIncorrectRemoval,'linewidth',1.5)
+plot(totalCorrectRemoval,'linewidth',linewidth)
+plot(totalIncorrectRemoval,'linewidth',linewidth)
 legend('Correct Removal','Incorrect Removal')
-set(gca,'fontsize',16)
+set(gca,'fontsize',fontsize)
 xlabel('Days')
 ylabel('Total Number')
 

@@ -6,7 +6,7 @@
 clear; close all; %clc;
 
 restoredefaultpath;
-folder = fileparts(which('ZModelPlots.m'));
+folder = fileparts(which('ZModel_MultipleSims.m'));
 addpath(genpath(folder));
 rmpath(folder);
 
@@ -15,7 +15,7 @@ numIndividuals = 25; % number of individuals in the simulation
 numHouses = 5; % total number of households
 numTraits = 5; % total number of triats assigned to individuals
 maxDays = 1000; % max length of simulation
-susThres = 0;
+susThres = 1;
 totalTrials = 500;
 
 % Prallocate memory
@@ -93,15 +93,17 @@ for trialLoop = 1:totalTrials
 end
 
 %% Plot the results
+fontsize = 30;
+
 figure(1); 
 subplot(1,2,1);
 histogram(numSurvivors(numSurvivors>0))
-set(gca,'fontsize',16)
+set(gca,'fontsize',fontsize)
 xlabel('Number of Survivors')
 ylabel('Number of Trials')
 subplot(1,2,2);
 histogram(incNum)
-set(gca,'fontsize',16)
+set(gca,'fontsize',fontsize)
 xlabel('Innocent Bystanders')
 ylabel('Number of Trials')
 

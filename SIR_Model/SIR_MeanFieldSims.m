@@ -14,8 +14,8 @@ rmpath(folder);
 
 %% Key parameters
 
-beta = 0.15; % infection rate
-nu = 0.1; % recovery rate
+beta = 0.04; % infection rate
+nu = 0.2; % recovery rate
 pInf = 0.001; % proportion of population initially infected
 tMax = 2000; % ending time point for the simulations
 
@@ -32,17 +32,19 @@ if isempty(simStop)
     simStop = 130;
 end
 
+linewidth = 5;
+fontsize = 30;
 figure(1); hold on;
 % used to determine the line of the plots
 colorScheme = [0 0.447 0.741; 
                0.85 0.325 0.098; 
                0.929 0.694 0.125];
-plot(tVec, SVec,'-','linewidth',1.5,'color',colorScheme(1,:))
-plot(tVec, IVec,'-','linewidth',1.5,'color',colorScheme(2,:))
-plot(tVec, 1-(SVec+IVec),'-','linewidth',1.5,'color',colorScheme(3,:))
+plot(tVec, SVec,'-','linewidth',linewidth,'color',colorScheme(1,:))
+plot(tVec, IVec,'-','linewidth',linewidth,'color',colorScheme(2,:))
+plot(tVec, 1-(SVec+IVec),'-','linewidth',linewidth,'color',colorScheme(3,:))
 xlim([0 simStop])
 legend('Susceptible','Infected','Recovered','AutoUpdate','off')
-set(gca,'fontsize',16)
+set(gca,'fontsize',fontsize)
 ylabel('Proportion of the Pop')
 xlabel('Time')
 

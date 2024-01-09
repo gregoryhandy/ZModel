@@ -30,13 +30,14 @@ fprintf('The R_0 value is %.2f\n',beta/nu)
     
 fprintf('Total recovered: %d\n',(NTot - (SNum(end)+INum(end))))
 
-linewidth = 3;
+linewidth = 5;
+fontsize = 30;
 figure(1); clf; hold on;
 plot(TVec,SNum/NTot,'linewidth',linewidth)
 plot(TVec,INum/NTot,'linewidth',linewidth)
 plot(TVec,(NTot - (SNum+INum))/NTot,'linewidth',linewidth)
 legend('Susceptible','Infected','Recovered','AutoUpdate','off')
-set(gca,'fontsize',16)
+set(gca,'fontsize',fontsize)
 ylabel('Proportion of the Pop')
 xlabel('Time')
 xlim([0 130])
@@ -47,8 +48,8 @@ xlim([0 130])
 
 figure(1); hold on;
 colorScheme = [0 0.447 0.741; 0.85 0.325 0.098; 0.929 0.694 0.125];
-plot(tVec, SVec,'--','linewidth',1.5,'color',colorScheme(1,:))
-plot(tVec, IVec,'--','linewidth',1.5,'color',colorScheme(2,:))
-plot(tVec, 1-(SVec+IVec),'--','linewidth',1.5,'color',colorScheme(3,:))
+plot(tVec, SVec,'--','linewidth',linewidth,'color',colorScheme(1,:))
+plot(tVec, IVec,'--','linewidth',linewidth,'color',colorScheme(2,:))
+plot(tVec, 1-(SVec+IVec),'--','linewidth',linewidth,'color',colorScheme(3,:))
 xlim([0 130])
 
