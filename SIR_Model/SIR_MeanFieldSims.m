@@ -14,7 +14,8 @@ rmpath(folder);
 
 %% Key parameters
 
-beta = 0.04; % infection rate
+% beta = 0.04; % infection rate
+beta = 0.6; % infection rate
 nu = 0.2; % recovery rate
 pInf = 0.001; % proportion of population initially infected
 tMax = 2000; % ending time point for the simulations
@@ -34,7 +35,7 @@ end
 
 linewidth = 5;
 fontsize = 30;
-figure(1); hold on;
+f = figure(1); f.Position = [408 393 736 522]; hold on;
 % used to determine the line of the plots
 colorScheme = [0 0.447 0.741; 
                0.85 0.325 0.098; 
@@ -47,11 +48,12 @@ legend('Susceptible','Infected','Recovered','AutoUpdate','off')
 set(gca,'fontsize',fontsize)
 ylabel('Proportion of the Pop')
 xlabel('Time')
+title(sprintf('R_0=%.2f',beta/nu))
 
 %% Print out relevant statistics
 
 [maxVal,maxIndex] = max(IVec);
-endIndex = find(IVec<10e-5,1);
+endIndex = find(IVec<10e-4,1);
 
 fprintf('----------------\n')
 fprintf('Maximum fraction infected: %.2f\n',maxVal)
@@ -60,3 +62,6 @@ fprintf('Time of outbreak maximum: %.2f\n',tVec(maxIndex))
 fprintf('Time of outbreak conclusion: %.2f\n',tVec(endIndex))
 fprintf('----------------\n')
 
+
+plot(tVec(maxIndex)+[0 0],[0 1],'k--','LineWidth',1.5)
+plot(tVec(endIndex)+[0 0],[0 1],'k--','LineWidth',1.5)
